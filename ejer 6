@@ -1,0 +1,29 @@
+public class MergeSort {
+    public static void mergeSort(int[] v) {
+        if (v.length < 2) return;
+        int mid = v.length / 2;
+        int[] left = Arrays.copyOfRange(v, 0, mid);
+        int[] right = Arrays.copyOfRange(v, mid, v.length);
+        
+        mergeSort(left);
+        mergeSort(right);
+        merge(v, left, right);
+    }
+
+    public static void merge(int[] v, int[] left, int[] right) {
+        int i = 0, j = 0, k = 0;
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) {
+                v[k++] = left[i++];
+            } else {
+                v[k++] = right[j++];
+            }
+        }
+        while (i < left.length) {
+            v[k++] = left[i++];
+        }
+        while (j < right.length) {
+            v[k++] = right[j++];
+        }
+    }
+}
